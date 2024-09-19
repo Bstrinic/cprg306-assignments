@@ -1,8 +1,9 @@
 import Item from "./item";
 
 
-export default function ItemList(){
+export default function ItemList(ItemListObj){
     
+    let {name, quantity, category} = ItemListObj;
     const item1 = {
         name: "milk, 4 L 🥛",
         quantity: 1,
@@ -77,7 +78,7 @@ export default function ItemList(){
 
     return(
       <div>
-        <Item>{item1}</Item> 
+        <Item>({item1})</Item> 
         <Item>{item2}</Item>
         <Item>{item3}</Item>
         <Item>{item4}</Item>
