@@ -6,6 +6,11 @@ export default function NewItem() {
   // initializing state variables
   const [quantity, setQuantity] = useState(1);
 
+  // name variable
+  const [name, setName] = useState("");
+  // Category variable
+  const [category, setCategory] = useState("Produce")
+
   // Button disabled
   const incrementDisabled = quantity >= 20;
   const decrementDisabled = quantity <= 1;
