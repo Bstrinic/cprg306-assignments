@@ -4,14 +4,14 @@ import { useState } from "react";
 
 export default function NewItem() {
   // quantity variable
-  const [totalQuantity, setItemQuantity] = useState(1);
+  const [totalQuantity, setTotalQuantity] = useState(1);
   // name variable
   const [itemName, setItemName] = useState("");
   // Category variable
   const [itemCategory, setItemCategory] = useState("Produce");
 
   const handleItemNameChange = (event) => setItemName(event.target.value);
-  const handleQuantityChange = (event) => setItemQuantity(event.target.value);
+  const handleQuantityChange = (event) => setTotalQuantity(event.target.value);
   const handleCategoryChange = (event) => setItemCategory(event.target.value);
 
   // Creating form submission handler
@@ -29,12 +29,12 @@ export default function NewItem() {
 
     alert(`
       Item Name: ${item.itemName}
-      Quantity: ${item.itemQuantity}
+      Quantity: ${item.totalQuantity}
       Category: ${item.itemCategory}
       `);
 
     setItemName("");
-    setItemQuantity("");
+    setTotalQuantity(1);
     setItemCategory("");
   };
 
@@ -51,7 +51,7 @@ export default function NewItem() {
   const increment = () => {
     let currentQuantity = totalQuantity;
     if (totalQuantity >= 1) {
-      setItemQuantity(totalQuantity + 1);
+      setTotalQuantity(totalQuantity + 1);
     }
   };
 
@@ -59,7 +59,7 @@ export default function NewItem() {
   const decrement = () => {
     let currentQuantity = totalQuantity;
     if (totalQuantity >= 2) {
-      setItemQuantity(totalQuantity - 1);
+      setTotalQuantity(totalQuantity - 1);
     }
   };
 
