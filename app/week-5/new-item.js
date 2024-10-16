@@ -34,7 +34,7 @@ export default function NewItem() {
       `);
 
     setItemName("");
-    setItemQuantity(1);
+    setItemQuantity("");
     setItemCategory("");
   };
 
@@ -42,9 +42,11 @@ export default function NewItem() {
   const decrementDisabled = totalQuantity <= 1;
 
   // Button enabled
-  let buttonStyles =
+  let incrementStyles =
     "w-8 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75";
 
+  let decrementStyle =
+    "w-8 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"  
   // Function to increment counter
   const increment = () => {
     let currentQuantity = totalQuantity;
@@ -67,8 +69,8 @@ export default function NewItem() {
   //   }
 
   if (totalQuantity <= 1) {
-    buttonStyles =
-      "w-8 bg-gray-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75";
+    decrementStyle =
+      "w-8 bg-gray-500 text-white font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75";
   }
 
   return (
@@ -97,8 +99,8 @@ export default function NewItem() {
             <button
               type="button"
               onChange={handleQuantityChange}
-              className={buttonStyles}
-              value={totalQuantity}
+              className={decrementStyle}
+              
               onClick={decrement}
             >
               -
@@ -106,8 +108,8 @@ export default function NewItem() {
             <button
               type="button"
               onChange={handleQuantityChange}
-              className={buttonStyles}
-              value={totalQuantity}
+              className={incrementStyles}
+              
               onClick={increment}
             >
               +
