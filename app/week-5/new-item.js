@@ -95,7 +95,8 @@ export default function NewItem() {
           <p className="text-black m-3 p-2 font-bold text-lg">
             {totalQuantity}
           </p>
-          <div className="flex m-3 p-2">
+          <div 
+            className="flex m-3 p-2 justify-between">
             <button
               type="button"
               onChange={handleQuantityChange}
@@ -122,7 +123,7 @@ export default function NewItem() {
               defaultValue="Produce"
               onChange={handleCategoryChange}
               value={itemCategory}
-              className="border-2 border-gray-300 rounded-lg font-sans text-black justify-center flex "
+              className="rounded-lg font-sans text-black justify-center flex "
             >
               <option value="produce">Produce</option>
               <option value="Dairy">Dairy</option>
