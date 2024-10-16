@@ -12,7 +12,7 @@ export default function NewItem() {
 
   const handleItemNameChange = (event) => setItemName(event.target.value);
   const handleQuantityChange = (event) => setItemQuantity(event.target.value);
-  const handleCategoryChange = (event) => setItemCategory(event.target.value)
+  const handleCategoryChange = (event) => setItemCategory(event.target.value);
 
   // Creating form submission handler
   const handleSubmit = (event) => {
@@ -29,12 +29,12 @@ export default function NewItem() {
 
     alert(`
       Item Name: ${item.itemName}
-      Quantity: ${item.totalQuantity}
+      Quantity: ${item.itemQuantity}
       Category: ${item.itemCategory}
       `);
 
     setItemName("");
-    setItemQuantity("");
+    setItemQuantity(1);
     setItemCategory("");
   };
 
@@ -66,28 +66,27 @@ export default function NewItem() {
   //       "w-8 bg-gray-500 text-white font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75";
   //   }
 
-    if (totalQuantity <= 1) {
-      buttonStyles =
-        "w-8 bg-gray-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75";
-    }
+  if (totalQuantity <= 1) {
+    buttonStyles =
+      "w-8 bg-gray-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75";
+  }
 
   return (
-    <form className="p-2 m-4 bg-slate-900 text-black max-w-sm w-full">
-
+    <form
+      onSubmit={handleSubmit}
+      className="p-2 m-4 bg-slate-900 text-black max-w-sm w-full"
+    >
       <div className="mb-3">
         <label className="flex justify-center">
           <input
             type="text"
             onChange={handleItemNameChange}
+            value={itemName}
             className="w-full border-2 border-gray-300 rounded-lg font-sans text-black p-2 m-2 "
             placeholder="Item Name"
           ></input>
         </label>
       </div>
-
-
-
-
 
       <div className="flex justify-between ">
         <div className="flex p-2 m-3 rounded-md bg-white w-1/2">
@@ -95,10 +94,11 @@ export default function NewItem() {
             {totalQuantity}
           </p>
           <div className="flex m-3 p-2">
-            <button 
+            <button
               type="button"
               onChange={handleQuantityChange}
               className={buttonStyles}
+              value={totalQuantity}
               onClick={decrement}
             >
               -
@@ -107,6 +107,7 @@ export default function NewItem() {
               type="button"
               onChange={handleQuantityChange}
               className={buttonStyles}
+              value={totalQuantity}
               onClick={increment}
             >
               +
@@ -115,9 +116,10 @@ export default function NewItem() {
         </div>
         <div className="flex p-2 m-3 rounded-md bg-white w-1/2">
           <label className="justify-center flex">
-            <select 
+            <select
               defaultValue="Produce"
               onChange={handleCategoryChange}
+              value={itemCategory}
               className="border-2 border-gray-300 rounded-lg font-sans text-black justify-center flex "
             >
               <option value="produce">Produce</option>
@@ -140,12 +142,10 @@ export default function NewItem() {
         <button
           type="submit"
           className="w-full border-2 bg-green-500 border-green-950 rounded-lg font-sans text-black p-2 m-2 "
-          onClick={handleSubmit}
         >
           +
         </button>
       </div>
-
     </form>
 
     // <div className="bg-slate-100 flex m-5 w-1/2 justify-center p-3">
