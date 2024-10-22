@@ -5,34 +5,58 @@ import { useState } from "react";
 import items from "./items.json";
 
 export default function ItemList() {
+  // Defining button styles
+  let buttonStyles =
+    "bg-teal-950 p-1 m-2 w-28 border-4 border-teal-800 shadow-md hover:bg-teal-900 focus:outline-none";
+
   // Creating useState for sortBy
   const [sortBy, setSortBy] = useState("name");
 
+
+
   items.sort((a, b) => {
-    if ( sortBy === "name" ) {
+    if (sortBy === "name") {
       return a.name.localeCompare(b.name);
-    } else if ( sortBy === "category") {
+    } else if (sortBy === "category") {
       return a.category.localeCompare(b.category);
+    } else {
+      return 0;
     }
-  })
+  });
+
+  if (setSortBy === "name") {
+    buttonStyles = "bg-pink-500 p-1 m-2 w-28 border-4 border-teal-800 shadow-md hover:bg-teal-900 focus:outline-none";
+  } else if (setSortBy === "category") {
+    buttonStyles = "bg-pink-500 p-1 m-2 w-28 border-4 border-teal-800 shadow-md hover:bg-teal-900 focus:outline-none";
+  }
 
   return (
     <div>
-      <div className="flex justify-center">
-        <p>Sort by: </p>
-        <div>
-          <button onClick={setSortBy}>Name</button>
-          <button onClick={setSortBy}>Category</button>
-        </div>
+      <div>
+        <label className="font-bold text-black" for="sort">
+          Sort by:{" "}
+        </label>
+        <button className={buttonStyles} onClick={() => setSortBy("name")}>
+          Name
+        </button>
+        <button
+          className={buttonStyles}
+          onClick={() => setSortBy("category")}
+        >
+          Category
+        </button>
       </div>
       <ul>
         {items.map((item) => (
-          <div className="bg-pink-500 border border-black rounded outline p-5 my-5 mx-10
-            w-80 flex: 1 justify-center text-black font-bold">
+          <div
+            className="bg-pink-500 border border-black rounded outline p-5 my-5 mx-10
+            w-80 flex: 1 justify-center text-black font-bold"
+          >
             <h2>{item.name}</h2>
-            <p>Buy {item.quantity} in {item.category}</p>
+            <p>
+              Buy {item.quantity} in {item.category}
+            </p>
           </div>
-
 
           // <li
           //   className="bg-pink-500 border border-black rounded outline p-5 my-5 mx-10

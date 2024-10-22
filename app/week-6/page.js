@@ -4,12 +4,12 @@ import ItemList from "./item-list";
 
 export default function Page() {
   return (
-    <main className="bg-cyan-400 flex justify-center">
-      <div>
+    <main className="bg-cyan-400">
+      <div className="">
         <HelmetProvider>
           <title>Shopping List</title>
         </HelmetProvider>
-        <h1 className="justify-center flex text-4xl font-bold text-black">
+        <h1 className="text-4xl font-bold text-black">
           Shopping List
         </h1>
         <ItemList />
