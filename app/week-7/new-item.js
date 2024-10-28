@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function NewItem() {
+export default function NewItem(onAddItem) {
   // quantity variable
   const [totalQuantity, setTotalQuantity] = useState(1);
   // name variable
@@ -20,18 +20,15 @@ export default function NewItem() {
     event.preventDefault();
 
     let item = {
-      itemName: itemName,
-      totalQuantity: totalQuantity,
-      itemCategory: itemCategory,
+      id: item.length + 2,
+      name: itemName,
+      quantity: totalQuantity,
+      category: itemCategory
     };
 
-    console.log(item);
+    // Calling my onAddItem function
+    onAddItem(item)
 
-    alert(`
-      Item Name: ${item.itemName}
-      Quantity: ${item.totalQuantity}
-      Category: ${item.itemCategory}
-      `);
 
     setItemName("");
     setTotalQuantity(1);
