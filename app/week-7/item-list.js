@@ -26,17 +26,17 @@ export default function ItemList({ items }) {
 
   // Defining button styles
   const buttonStyles =
-    "p-1 m-2 w-28 border-4 border-orange-500 rounded shadow-md focus:outline-none ";
+    "p-1 m-2 w-28 border-4 border-green-500 rounded shadow-md focus:outline-none ";
 
   // Ternary Operator - Syntax: condition ? <expression if true> : <expression if false>
   const nameButtonStyle =
     sortBy === "name"
-      ? buttonStyles + "bg-orange-500"
-      : buttonStyles + "bg-orange-800";
+      ? buttonStyles + "bg-green-500 text-black font-bold"
+      : buttonStyles + "bg-green-800 text-black font-bold";
   const categoryButtonStyle =
     sortBy === "category"
-      ? buttonStyles + "bg-orange-500"
-      : buttonStyles + "bg-orange-800";
+      ? buttonStyles + "bg-green-500 text-black font-bold"
+      : buttonStyles + "bg-green-800 text-black font-bold";
 
   return (
     <div className="m-5">

@@ -114,7 +114,7 @@ export default function NewItem({onAddItem}) {
               value={itemCategory}
               className="rounded-lg font-sans text-black justify-center flex "
             >
-              <option value="produce">Produce</option>
+              <option value="Produce">Produce</option>
               <option value="Dairy">Dairy</option>
               <option value="Bakery">Bakery</option>
               <option value="Meat">Meat</option>
