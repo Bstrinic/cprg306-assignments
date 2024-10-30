@@ -14,7 +14,7 @@ export default function Page() {
 
   // Creating an event handler function
   const handleAddItem = (newItem) => {
-    setItems( [...ItemsData, newItem ])
+    setItems((prevItem) => [...prevItem, newItem])
   };
 
   return (
@@ -28,9 +28,9 @@ export default function Page() {
         </h1>
         <NewItem 
         itemsArray={items}
-        newItemFunction={handleAddItem}
+        onAddItem={handleAddItem}
         />
-        <ItemList />
+        <ItemList items={items}/>
       </div>
     </main>
   );

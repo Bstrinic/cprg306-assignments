@@ -1,22 +1,28 @@
 "use client";
 
-import Item from "./item";
 import { useState } from "react";
 
-export default function ItemList(items) {
+export default function ItemList({ items }) {
   // Creating useState for sortBy
   const [sortBy, setSortBy] = useState("name");
 
-  // Sorting for name and category
-  items.sort((a, b) => {
-    if (sortBy === "name") {
-      return a.name.localeCompare(b.name);
-    } else if (sortBy === "category") {
-      return a.category.localeCompare(b.category);
-    } else {
-      return 0;
-    }
-  });
+  const getSortedItems = () => {
+    // Creating a copy of items before sorting
+    const itemsCopy = [...items];
+
+    // Sorting for name and category
+    itemsCopy.sort((a, b) => {
+      if (sortBy === "name") {
+        return a.name.localeCompare(b.name);
+      } else if (sortBy === "category") {
+        return a.category.localeCompare(b.category);
+      } else {
+        return 0;
+      }
+    });
+
+    return itemsCopy;
+  };
 
   // Defining button styles
   const buttonStyles =
@@ -35,7 +41,7 @@ export default function ItemList(items) {
   return (
     <div className="m-5">
       <div>
-        <label className="font-bold text-white text-xl" for="sort">
+        <label className="font-bold text-white text-xl" htmlFor="sort">
           Sort by:
         </label>
         <button className={nameButtonStyle} onClick={() => setSortBy("name")}>
@@ -49,8 +55,9 @@ export default function ItemList(items) {
         </button>
       </div>
       <ul>
-        {items.map((item) => (
+        {getSortedItems().map((item) => (
           <div
+            key={item.id}
             className="bg-slate-600 border-4 border-slate-800  p-5 my-5 mx-10
             w-80 flex: 1 justify-center text-white font-bold"
           >

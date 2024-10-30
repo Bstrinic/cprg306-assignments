@@ -2,12 +2,10 @@
 
 import { useState } from "react";
 
-export default function NewItem(onAddItem) {
-  // quantity variable
+export default function NewItem({onAddItem}) {
+
   const [totalQuantity, setTotalQuantity] = useState(1);
-  // name variable
   const [itemName, setItemName] = useState("");
-  // Category variable
   const [itemCategory, setItemCategory] = useState("Produce");
 
   const handleItemNameChange = (event) => setItemName(event.target.value);
@@ -19,16 +17,18 @@ export default function NewItem(onAddItem) {
     // Preventing default submission behavior
     event.preventDefault();
 
+    // Generating a new ID
+    const generateId = () => Math.random().toString(36)
+
     let item = {
-      id: item.length + 2,
+      id: generateId(),
       name: itemName,
       quantity: totalQuantity,
       category: itemCategory
     };
 
     // Calling my onAddItem function
-    onAddItem(item)
-
+    onAddItem(item);
 
     setItemName("");
     setTotalQuantity(1);
@@ -46,7 +46,6 @@ export default function NewItem(onAddItem) {
     "w-8 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"  
   // Function to increment counter
   const increment = () => {
-    let currentQuantity = totalQuantity;
     if (totalQuantity >= 1) {
       setTotalQuantity(totalQuantity + 1);
     }
@@ -54,16 +53,10 @@ export default function NewItem(onAddItem) {
 
   // Function to decrement counter
   const decrement = () => {
-    let currentQuantity = totalQuantity;
     if (totalQuantity >= 2) {
       setTotalQuantity(totalQuantity - 1);
     }
-  };
-
-  //   if (quantity >= 20) {
-  //     buttonStyles =
-  //       "w-8 bg-gray-500 text-white font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75";
-  //   }
+  };  
 
   if (totalQuantity <= 1) {
     decrementStyle =
@@ -117,7 +110,6 @@ export default function NewItem(onAddItem) {
         <div className="flex p-2 m-3 rounded-md bg-white w-1/2">
           <label className="justify-center flex">
             <select
-              defaultValue="Produce"
               onChange={handleCategoryChange}
               value={itemCategory}
               className="rounded-lg font-sans text-black justify-center flex "
