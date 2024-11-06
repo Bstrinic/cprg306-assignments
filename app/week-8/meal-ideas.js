@@ -14,4 +14,11 @@ export default function MealIdeas([ ingredient ]) {
     // Defining state variable for meals
     const [meals, setMeals] = useState([]);
 
+    // Defining load function 
+    const loadMealItems = async () => {
+        // Storing fetchMealIdeas in data variable
+        const data = await fetchMealIdeas(ingredient);
+        // Setting the state
+        setMeals(data);
+    }
 }
