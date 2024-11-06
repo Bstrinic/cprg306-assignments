@@ -1,6 +1,7 @@
-export default function Item({ name, quantity, category }) {
+export default function Item({ name, quantity, category, onSelect }) {
   return (
     <div
+      onClick={onSelect}
       className="bg-pink-500 border border-black rounded outline p-5 my-5 mx-10
     w-80 flex: 1 justify-center text-black font-bold"
     >

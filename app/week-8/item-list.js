@@ -2,13 +2,12 @@
 
 import { useState } from "react";
 
-export default function ItemList({ items }) {
+export default function ItemList({ items, onItemSelect }) {
   // Creating useState for sortBy
   const [sortBy, setSortBy] = useState("name");
 
   const getSortedItems = () => {
-    // Creating a copy of items before sorting
-    const itemsCopy = [...items];
+    const itemsCopy = [...items]; // Creating a copy of items before sorting
 
     // Sorting for name and category
     itemsCopy.sort((a, b) => {
@@ -57,9 +56,10 @@ export default function ItemList({ items }) {
       <ul>
         {getSortedItems().map((item) => (
           <div
+            onClick={() => onItemSelect(item)}
             key={item.id}
             className="bg-slate-600 border-4 border-slate-800  p-5 my-5 mx-10
-            w-80 flex: 1 justify-center text-white font-bold"
+            w-80 flex: 1 justify-center text-white font-bold hover:bg-green-600"
           >
             <h2>{item.name}</h2>
             <p>

@@ -11,38 +11,51 @@ const fetchMealIdeas = async (ingredient) => {
   return data.meals;
 };
 
-export default function MealIdeas([ingredient]) {
-  // Defining state variable for meals
-  const [meals, setMeals] = useState([]);
+// Function to fetch detailed meal info based on meal ID
+const fetchMealDetails = async (id) => {
+  const response = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+  );
+  const data = await response.json();
+  return data.meals ? data.meals[0] : null;
+};
 
-  // Defining load function
-  const loadMealIdeas = async () => {
-    // Storing fetchMealIdeas in data variable
-    const data = await fetchMealIdeas(ingredient);
-    // Setting the state
-    setMeals(data);
-  };
+export default function MealIdeas({ ingredient }) {
+  const [meals, setMeals] = useState([]); // State for list of meals
+  const [selectedMeal, setSelectedMeal] = useState(null); // State for expanded meal details
 
-  // Creating a useEffect hook
+  // Fetch meals based on ingredient
   useEffect(() => {
-    // Calling function
-    loadMealIdeas();
-    // React to change
+    if (ingredient) {
+      const loadMealIdeas = async () => {
+        const data = await fetchMealIdeas(ingredient);
+        setMeals(data || []); // Fallback to empty array if no meals
+      };
+      loadMealIdeas();
+    }
   }, [ingredient]);
 
-  return(
+  // Function to handle meal click to load details
+  const handleMealClick = async (meal) => {
+    if (selectedMeal && selectedMeal.idMeal === meal.idMeal) {
+      setSelectedMeal(null); // Collapse if already expanded
+    } else {
+      const details = await fetchMealDetails(meal.idMeal);
+      setSelectedMeal(details); // Expand selected meal
+    }
+  };
+
+  return (
     <div>
-        <header>
-            <h1>Meal Ideas</h1>
-        </header>
-        <p>Select an item to see meal ideas</p>
-        <ul>
-            {meals.map((meals) => (
-                <li key={meals.idMeal}>
-                    {meals.strMeal}
-                </li>
-            ))}
-        </ul>
+      <header>
+        <h1>Meal Ideas</h1>
+      </header>
+      <p>Select an item to see meal ideas</p>
+      <ul>
+        {meals.map((meals) => (
+          <li key={meals.idMeal}>{meals.strMeal}</li>
+        ))}
+      </ul>
     </div>
   );
 }

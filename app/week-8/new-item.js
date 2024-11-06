@@ -91,7 +91,6 @@ export default function NewItem({onAddItem}) {
               type="button"
               onChange={handleQuantityChange}
               className={decrementStyle}
-              
               onClick={decrement}
             >
               -
@@ -100,7 +99,6 @@ export default function NewItem({onAddItem}) {
               type="button"
               onChange={handleQuantityChange}
               className={incrementStyles}
-              
               onClick={increment}
             >
               +
@@ -139,29 +137,5 @@ export default function NewItem({onAddItem}) {
         </button>
       </div>
     </form>
-
-    // <div className="bg-slate-100 flex m-5 w-1/2 justify-center p-3">
-    // <div className="flex justify-between  ">
-    //   <p className="text-black m-3 p-2 font-bold text-lg">{quantity}</p>
-    //   <div className="flex m-3 p-2">
-    //     <button
-    //       className={`${buttonStyles} ${
-    //         decrementDisabled ? "bg-gray-500" : ""
-    //       }`}
-    //       onClick={decrement}
-    //     >
-    //       -
-    //     </button>
-    //     <button
-    //       className={`${buttonStyles} ${
-    //         incrementDisabled ? "bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-900" : ""
-    //       }`}
-    //       onClick={increment}
-    //     >
-    //       +
-    //     </button>
-    //   </div>
-    // </div>
-    // </div>
   );
 }
