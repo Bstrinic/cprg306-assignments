@@ -48,12 +48,31 @@ export default function MealIdeas({ ingredient }) {
   return (
     <div>
       <header>
-        <h1>Meal Ideas</h1>
+        <h1 className="text-white">Meal Ideas</h1>
+        <p className="text-white">{ingredient ? `Here are some meal ideas using ${ingredient}:` : "Select an item to see meal ideas"}</p>
       </header>
-      <p>Select an item to see meal ideas</p>
-      <ul>
-        {meals.map((meals) => (
-          <li key={meals.idMeal}>{meals.strMeal}</li>
+      <ul className="text-white">
+        {meals.map((meal) => (
+          <li key={meal.idMeal} onClick={() => handleMealClick(meal)} className="mealItem">
+            <div className="mealTitle">{meal.strMeal}</div>
+            {selectedMeal && selectedMeal.idMeal === meal.idMeal && (
+              <div className="mealDetails">
+                <p>Ingredient's needed: </p>
+                <ul>
+                  {Object.entries(selectedMeal)
+                  .filter(([key, value]) => key.startsWith("strIngredient") && value)
+                  .map(([key, ingredient], index) => {
+                    const measure = selectedMeal[`strMeasure${index + 1}`];
+                    return(
+                      <li key={index}>
+                        {ingredient} {measure ? `-${measure}` : ""}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+          </li>
         ))}
       </ul>
     </div>
