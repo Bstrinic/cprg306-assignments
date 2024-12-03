@@ -5,6 +5,8 @@ import NewItem from "./new-item";
 import ItemList from "./item-list";
 import ItemsData from "./items.json";
 import { useState } from "react";
+import { getItems, addItem } from "../_services/shopping-list-service";
+import { useEffect } from "react";
 
 export default function Page() {
   // Creating state variable
