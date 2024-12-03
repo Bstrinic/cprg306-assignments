@@ -30,16 +30,16 @@ export default function Page() {
   return (
     <main>
       <div>
-        <h1>Shopping List App</h1>
+        <h1 className="font-bold text-3xl">Shopping List App</h1>
         {!user ? (
-          <button onClick={handleSignIn}>Sign in with GitHub</button>
+          <button className="hover:underline" onClick={handleSignIn}>Sign in with GitHub</button>
         ) : (
-          <div>
-            <p>
+          <div className="flex flex-col">
+            <p className="font-bold">
               Signed in as {user.displayName} ({user.email})
             </p>
-            <button onClick={handleSignOut}>Sign Out</button>
-            <Link href="/week-9/shopping-list/">Continue to your shopping list</Link>
+            <Link className="font-bold hover:underline " href="/week-9/shopping-list/">Continue to your shopping list</Link>
+            <button className="text-red-600 font-bold" onClick={handleSignOut}>Sign Out</button>
           </div>
         )}
       </div>
