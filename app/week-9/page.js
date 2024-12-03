@@ -1,9 +1,14 @@
+"use client"
+
+import Link from "next/link";
+// Import the useUserAuth hook
 import { useUserAuth } from "./_utils/auth-context";
 
 export default function Page() {
-  const userAuth = useUserAuth();
+  // Use the useUserAuth hook to get the user object and the login and logout functions
   const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
+  // Sign in to Firebase with GitHub authentication
   async function handleSignIn() {
     try {
       await gitHubSignIn();
@@ -12,6 +17,7 @@ export default function Page() {
     }
   }
 
+  // Sign out of Firebase
   async function handleSignOut() {
     try {
       await firebaseSignOut();
@@ -20,6 +26,7 @@ export default function Page() {
     }
   }
 
+  // Displaying user information
   return (
     <main>
       <div>
@@ -29,10 +36,10 @@ export default function Page() {
         ) : (
           <div>
             <p>
-              Welcome, {user.displayName} ({user.email})
+              Signed in as {user.displayName} ({user.email})
             </p>
             <button onClick={handleSignOut}>Sign Out</button>
-            <Link to="/shopping-list">Go to Shopping List</Link>
+            <Link href="/week-9/shopping-list/">Continue to your shopping list</Link>
           </div>
         )}
       </div>
